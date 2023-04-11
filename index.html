@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Banking Site</title>
+    <style>
+      /* Navigation bar styles (same as before) */
+      ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #333;
+      }
+
+      li {
+        float: left;
+      }
+
+      li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+      }
+
+      li a:hover {
+        background-color: #111;
+      }
+
+      /* Page content styles */
+      .content {
+        padding: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation bar (same as before) -->
+    <ul>
+      <li><a class="active" href="#home">Home</a></li>
+      <li><a href="#login">Login</a></li>
+      <li><a href="#check_account">Check Account</a></li>
+      <li><a href="#deposit" onclick="deposit(100)">Deposit</a></li>
+      <li><a href="#withdraw" onclick="withdraw(50)">Withdraw</a></li>
+    </ul>
+    
+    <!-- Homepage content (same as before) -->
+    <div class="content">
+      <h1>Welcome to the Banking Site!</h1>
+      <p>This is a sample homepage for a banking site. Use the navigation bar above to access other pages.</p>
+    </div>
+    
+    <!-- Login form -->
+    <div class="content" id="login">
+      <h2>Login</h2>
+      <form>
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username"><br><br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password"><br><br>
+        <button type="button" onclick="login()">Submit</button>
+      </form>
+    </div>
+
+    <!-- Example deposit and withdraw buttons (same as before) -->
+    <div class="content">
+      <h2>Deposit and Withdraw</h2>
+      <button onclick="deposit(100)">Deposit $100</button>
+      <button onclick="withdraw(50)">Withdraw $50</button>
+    </div>
+
+    <!-- JavaScript code for login and storing information -->
+    <script>
+      // Array of registered users (just for demonstration purposes)
+      var users = [
+        {username: "user1", password: "password1", balance: 100},
+        {username: "user2", password: "password2", balance: 200},
+        {username: "user3", password: "password3", balance: 300}
+      ];
+
+      // Function to log in
+      function login() {
+        var username = document.getElementById("username").value;
+        var password = document.getElementById("password").value;
+        var userFound = false;
+        
+        for (var i = 0; i < users.length; i++) {
+          if (users[i].username === username && users[i].password === password) {
+            console.log("Login successful");
+            userFound = true;
+            break;
+          }
+        }
+
+        if (!userFound) {
+          console.log("Login failed");
+        }
+      }
+
+      // Function to store new user information (just for demonstration
