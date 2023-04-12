@@ -39,10 +39,10 @@
     <!-- Navigation bar (same as before) -->
     <ul>
       <li><a class="active" href="#home">Home</a></li>
-      <li><a href="login.html">Login</a></li>
+      <li><a href="#login" onclick="showLogin()">Login</a></li>
       <li><a href="#check_account">Check Account</a></li>
-      <li><a href="#deposit" onclick="deposit(100)">Deposit</a></li>
-      <li><a href="#withdraw" onclick="withdraw(50)">Withdraw</a></li>
+      <li><a href="#deposit" onclick="showDeposit()">Deposit</a></li>
+      <li><a href="#withdraw" onclick="showWithdraw()">Withdraw</a></li>
     </ul>
     
     <!-- Homepage content (same as before) -->
@@ -51,30 +51,46 @@
       <p>This is a sample homepage for a banking site. Use the navigation bar above to access other pages.</p>
     </div>
     
-    <!-- Example deposit and withdraw buttons -->
-    <div class="content">
-      <h2>Deposit and Withdraw</h2>
+    <!-- Login form (new) -->
+    <div class="content" id="loginForm" style="display: none;">
+      <h2>Login</h2>
+      <form>
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username"><br><br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password"><br><br>
+        <button type="button" onclick="login()">Submit</button>
+      </form>
+    </div>
+
+    <!-- Example deposit and withdraw buttons (same as before) -->
+    <div class="content" id="depositForm" style="display: none;">
+      <h2>Deposit</h2>
       <button onclick="deposit(100)">Deposit $100</button>
+    </div>
+
+    <div class="content" id="withdrawForm" style="display: none;">
+      <h2>Withdraw</h2>
       <button onclick="withdraw(50)">Withdraw $50</button>
     </div>
 
-    <!-- JavaScript code (same as before) -->
+    <!-- JavaScript code (updated) -->
     <script>
       var balance = 0;
+      var users = [
+        {username: "user1", password: "password1", balance: 1000},
+        {username: "user2", password: "password2", balance: 500}
+      ];
 
-      function deposit(amount) {
-        balance += amount;
-        console.log(amount + " deposited. New balance is: " + balance);
-      }
+      function login() {
+        var username = document.getElementById("username").value;
+        var password = document.getElementById("password").value;
 
-      function withdraw(amount) {
-        if (amount > balance) {
-          console.log("Error: Insufficient funds");
-        } else {
-          balance -= amount;
-          console.log(amount + " withdrawn. New balance is: " + balance);
-        }
-      }
+        for (var i = 0; i < users.length; i++) {
+          if (users[i].username === username && users[i].password === password) {
+            balance = users[i].balance;
+            console.log("Login successful. Current balance is: " + balance);
+            document.getElementById("loginForm").style.display = "none"}
+        };
+        
     </script>
-  </body>
-</html>
